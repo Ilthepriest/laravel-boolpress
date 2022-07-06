@@ -53,6 +53,12 @@ export default {
         Axios.get('/api/posts/' + this.$route.params.slug)
         .then(response =>{
             console.log(response.data);
+            if(response.data.status_code === 404){
+                this.$router.push({name: 'not-found'})  //è un redirect 
+            }else{
+                this.post = response.data
+                this.loading = false
+            }
             this.post = response.data
             this.loading = false
         })

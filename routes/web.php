@@ -4,6 +4,7 @@ use App\Mail\PostUpdateAdminMessage;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,9 @@ use App\Models\Post;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('contact-form', 'MessageController@index')->name('contact-form.index');
+Route::post('contact-form', 'MessageController@store');
 
 
 
@@ -35,6 +39,8 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('tags', 'TagController')->parameters([
         'tags' => 'tag:slug'   
     ])->except(['show', 'create', 'edit']);
+
+    Route::resource('messages', 'MessageController');
     
 });
 

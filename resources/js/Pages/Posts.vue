@@ -109,13 +109,14 @@ export default {
     methods: {
         getAllPosts(postPage){
             axios
-            .get('/api/posts',{
+            .get('/api/posts',{ 
                 params : {
                     page: postPage
                 }
             })
             .then((response) => {
                 console.log(response);
+                
                 this.posts = response.data.data //salvo il json con i dati dei posts
                 this.postsResponse = response.data //salvo TUTTO il json
             }).catch(e => {
